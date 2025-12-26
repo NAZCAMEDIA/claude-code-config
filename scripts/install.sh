@@ -55,6 +55,23 @@ mkdir -p "$CLAUDE_DIR/plugins"
 mkdir -p "$CLAUDE_DIR/commands"
 mkdir -p "$CLAUDE_DESKTOP_DIR"
 
+# Install ECO Startup Protocol (Global CLAUDE.md)
+echo -e "${ORANGE}🧠 Installing ECO Startup Protocol...${NC}"
+if [ -f "$REPO_DIR/claude-code-cli/global/CLAUDE.md" ]; then
+    cp "$REPO_DIR/claude-code-cli/global/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md"
+    echo -e "${GREEN}   ✓ ECO Startup Protocol installed (~/.claude/CLAUDE.md)${NC}"
+else
+    echo -e "${YELLOW}   ⚠ ECO Startup Protocol not found${NC}"
+fi
+
+# Install Home CLAUDE.md (Project-level)
+if [ -f "$REPO_DIR/CLAUDE.md" ]; then
+    cp "$REPO_DIR/CLAUDE.md" "$HOME/CLAUDE.md"
+    echo -e "${GREEN}   ✓ ECO Master Protocol installed (~/CLAUDE.md)${NC}"
+else
+    echo -e "${YELLOW}   ⚠ ECO Master Protocol not found${NC}"
+fi
+
 # Install Claude Code CLI configuration
 echo -e "${ORANGE}⚙️  Installing Claude Code CLI configuration...${NC}"
 
