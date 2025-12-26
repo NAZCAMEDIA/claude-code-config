@@ -1,0 +1,69 @@
+# Claude Code Configuration - .gitignore
+
+# Sensitive data
+*.local.json
+settings.local.json
+claude_code_config.local.json
+
+# Logs and temporary files
+*.log
+*error.log
+sync.log
+sync-error.log
+
+# Cache and temporary directories
+backup-*/
+.cache/
+.temp/
+tmp/
+
+# macOS
+.DS_Store
+
+# Git metadata
+.git/
+
+# Node modules (in skills/plugins)
+node_modules/
+*/node_modules/
+
+# Claude Code internal data (don't sync)
+.history/
+.sessions/
+.history/
+plans/
+projects/
+session-env/
+shell-snapshots/
+todos/
+debug/
+file-history/
+telemetry/
+statsig/
+output-styles/
+.stats-cache.json
+security_warnings_state_*.json
+
+# Desktop specific data
+Cookies*
+Cookies-journal
+Conversions
+Conversions-journal
+DIPS
+DIPS-wal
+Network*
+SharedStorage
+SharedStorage-wal
+Trust Tokens
+Trust Tokens-journal
+blob_storage/
+VideoDecodeStats/
+WebStorage/
+Crashpad/
+Session Storage/
+Local Storage/
+Code Cache/
+DawnGraphiteCache/
+DawnWebGPUCache/
+GPUCache/
+sentry/

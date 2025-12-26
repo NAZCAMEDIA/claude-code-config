@@ -1,0 +1,21 @@
+{
+    "mcpServers": {
+        "solaria-dfo": {
+            "transport": {
+                "type": "http",
+                "url": "https://dfo.solaria.agency/mcp"
+            },
+            "headers": {
+                "Authorization": "Bearer default"
+            }
+        },
+        "n8n": {
+            "command": "npx",
+            "args": ["-y", "n8n-mcp"],
+            "env": {
+                "N8N_API_URL": "https://n8n.solaria.agency",
+                "N8N_API_KEY": "n8n_api_55aceaa6be7b9ddfa81794c92882537da5f96d792e836558d7f1ef95b09ca911"
+            }
+        }
+    }
+}

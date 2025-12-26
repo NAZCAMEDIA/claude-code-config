@@ -1,0 +1,85 @@
+{
+	"scale": 0,
+	"locale": "es-ES",
+	"userThemeMode": "system",
+	"mcpServers": {
+		"chrome-devtools": {
+			"command": "npx",
+			"args": [
+				"chrome-devtools-mcp@latest",
+				"--isolated"
+			]
+		},
+		"filesystem": {
+			"command": "npx",
+			"args": [
+				"@modelcontextprotocol/server-filesystem",
+				"/Users/carlosjperez"
+			]
+		},
+		"sequential-thinking": {
+			"command": "npx",
+			"args": [
+				"@modelcontextprotocol/server-sequential-thinking"
+			]
+		}
+	},
+	"quickWindowPosition": {
+		"absolutePointInWorkspace": {
+			"x": 552,
+			"y": 315
+		},
+		"monitor": {
+			"accelerometerSupport": "unknown",
+			"bounds": {
+				"x": 0,
+				"y": 0,
+				"width": 1710,
+				"height": 1112
+			},
+			"colorDepth": 30,
+			"colorSpace": "{primaries:BT709, transfer:SRGB_HDR, matrix:RGB, range:FULL}",
+			"depthPerComponent": 10,
+			"detected": true,
+			"displayFrequency": 60.00239944458008,
+			"id": 1,
+			"internal": true,
+			"label": "Pantalla Retina integrada",
+			"maximumCursorSize": {
+				"width": 0,
+				"height": 0
+			},
+			"monochrome": false,
+			"nativeOrigin": {
+				"x": 0,
+				"y": 0
+			},
+			"rotation": 0,
+			"scaleFactor": 2,
+			"size": {
+				"width": 1710,
+				"height": 1112
+			},
+			"workArea": {
+				"x": 0,
+				"y": 43,
+				"width": 1710,
+				"height": 1013
+			},
+			"workAreaSize": {
+				"width": 1710,
+				"height": 1013
+			},
+			"touchSupport": "unknown"
+		},
+		"relativePointFromMonitor": {
+			"x": 552,
+			"y": 272
+		}
+	},
+	"dxt:allowlistEnabled": false,
+	"dxt:allowlistLastUpdated": "2025-12-26T17:44:02.773Z",
+	"dxt:allowlistCache": "djEwfi7Ivu3C0wXUfk77YlS6liubQRn5GcaA+z+tGIRPC9cla9BFGmtgsmLdX38xpcy3SEtlrmtiDe0it9IHdF5jcj25RRnDg8g4QiLHYyCM078L/CyC9Qnn2GbFRcRaTJkvpYZa1ODoxg1FOAOxxmLMmoWbBKHY+0h/aaa0sWtuPc6lvwUb6YOOgtrHo5dmEvrpizKrwdL9qWDvDApDOOjB+8tz9jtKoluGKmNu6iGWMIG7TkAtU+sYJXsxO5Du9lpX7EqA0CrJtFsTrH1LUT5wqSZV4doKVxW9rBNiKN/QBKEfYudq0QR/yu1VnIF1mP4bOazr3n0rOPdoIdExlJBu4Xp5kXtfBtam8NuELNvzLnrZHNoJd+5ew9BNLSVdddMtH5sUk9eGjxGVS0950Y6MxTtuSAoSX6Sx7vQAKZFeqMNeAyV87UEp7YiEXdhFBFkQkgWF22JB/Fg2T5Hg9sOKqFfyXhBTJbl9mhnrSrs8UjDWW8Oa4SU4mno/RS/q8RJ3J0CEPKyccJWSR66xGQsCaD5ZSUZFd644Nf9DXZ6Jq54A4TC/vOGbmYetv6N+7+XPrPUWmS7qi3afXffYRMZz1mnuYoyusec+LEv0VqzjeuytYMJnE23Ylh+VsMUOY6r5gFV1PFhzAG8QHYIV1oFLseY+ArtttrqCJv5aUvEYesaP+RZh/O5HVyPelhRgp6M7rXtpDVCDfysMm49hF0XpdMdl2vYG5MG/+LC9CcceU6FV3OISuIfcVnqlcL01QIy7epiPqqcv7c8T38hb6rvKMLfmX6rfcDMcMzOGozMNJiyjmj/O6w5RQ63z56Kohm/O4nmfBDZausKbqiTPbcjnltUStmKybc8cijs9lfxfFuo=",
+	"hasTrackedInitialActivation": true,
+	"oauth:tokenCache": "djEwKSL9E3+xeedOH+ldjtas7yRo+F5U0H0iL46ikLzH62F5tLtA4xTdBabeI9BkWieWI8TwX9noL5fRTgGYh+FmopheFJYaxR67CjR4HlfH0JdJI4SBMkdg9+aLfzbZkdAzBIwqVyz6a3cfgnze7gd+RrMjI2A1wV7bhOPIpwrlKuPjZekPlCDWmAu62mPlkjyW4ySOGYNfhAVnt8Q+b7XTNBekv6HEs+FceC4y0szqkCQ3+/Ay+TJkbBb1JD6gLW3KxL0QmYSE4k+UIQTgd/X2oXiLVV3qBXX6q71sF7DSEBqSzphPywdNBKgBPfuF7mqZLPQ3lvnGGqpq+KYjjSVgJsmFqGOZEz7Ii5cPO4YBkzPud9dxQBQiNK6+nfaapXt4Ht5U6DU13mUzAIPxp2YVSUTBiLjLCebvI2aXBiJsR4g="
+}
