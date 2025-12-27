@@ -12,6 +12,7 @@ Sincronización bidireccional con SOLARIA Digital Field Operations.
 
 - **sync** - Sincronización completa bidireccional
 - **status** - Estado actual del proyecto
+- **ready** - Mostrar tareas listas para trabajar (sin bloqueadores)
 - **next** - Siguiente tarea prioritaria
 - **complete** - Marcar tarea actual como completada
 - **memory [query]** - Buscar en memorias del proyecto
@@ -33,6 +34,20 @@ Cuando el usuario ejecuta `/dfo`:
 1. Llamar `get_work_context()`
 2. Mostrar resumen de sprint, epic, y tarea actual
 3. No modificar TodoList
+
+### `ready`
+1. Llamar `get_ready_tasks(format: "human")` con filtros del proyecto activo
+2. Mostrar lista ordenada por readiness_score (prioridad inteligente)
+3. Incluir razones de preparación para cada tarea
+4. Ofrecer iniciar la tarea con mayor score
+5. Filtros opcionales: `--priority`, `--sprint`, `--agent`
+
+Ejemplo:
+```
+/dfo ready                    # Todas las tareas ready del proyecto
+/dfo ready --priority high    # Solo tareas high/critical
+/dfo ready --sprint 1         # Solo Sprint 1
+```
 
 ### `next`
 1. Llamar `list_tasks(status: "pending")` ordenadas por prioridad
@@ -65,6 +80,7 @@ Cuando el usuario ejecuta `/dfo`:
 - `mcp__solaria-dfo__set_project_context`
 - `mcp__solaria-dfo__get_work_context`
 - `mcp__solaria-dfo__list_tasks`
+- `mcp__solaria-dfo__get_ready_tasks` **(NEW - DFN-004)**
 - `mcp__solaria-dfo__complete_task`
 - `mcp__solaria-dfo__complete_task_item`
 - `mcp__solaria-dfo__memory_create`
