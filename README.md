@@ -171,6 +171,54 @@ All plugins from `claude-code-plugins-plus` marketplace are enabled, including:
 - Grid 8pt alignment formulas
 - MCP response handling (isError vs text)
 
+#### iOS 26 Liquid Glass — World-Class Design
+
+**NEW**: Apple-grade design system for iOS 26 Liquid Glass material implementation.
+
+**Capabilities:**
+- Complete semantic token system (colors, typography, spacing, materials, motion)
+- Component library with perfect "Golden Sample" (Glass Pill Button)
+- Semantic material mapping (glass/bar, glass/control, glass/sheet, glass/overlay)
+- PASS/FAIL QA criteria for production readiness
+- SwiftUI/UIKit implementation-ready (not concept, but production)
+- Full light/dark mode + complex background variations
+
+**Key Features:**
+- 6 mandatory rules (Liquid Glass as functional layer, not decoration)
+- Material tokens with explicit "when to use" / "when NOT to use"
+- Golden Sample with 3 variants × 4 states
+- MVP validation (Home Dashboard with all components)
+- QA rubric: consistency, hierarchy, legibility, states, semantics, implementability
+
+**Deliverables:**
+- SKILL_SPEC (rules + material mapping + components)
+- TOKEN PACK (complete table with usage guidelines)
+- COMPONENT LIBRARY (Golden Sample + detailed specs)
+- MVP (light + dark validation screens)
+- QA REPORT (PASS/FAIL with documented corrections)
+
+**Files:**
+- Skill definition: `claude-code-cli/skills/ios26-liquid-glass-designer/skill.md`
+
+**Excellence Criterion:**
+- Golden Sample must be PERFECT (legible on 3 backgrounds: light, dark, photo)
+- Hit targets ≥ 44x44pt
+- States distinguishable WITHOUT animation
+- 80%+ implementable with native SwiftUI/UIKit components
+- If Golden Sample fails QA → NOT READY
+
+**Critical Prohibition:**
+❌ Do not use Liquid Glass as aesthetic makeup without functional purpose
+
+**Usage Example:**
+```bash
+# ECO can now design world-class iOS 26 systems via:
+# - Complete semantic token systems
+# - Production-ready component libraries
+# - PASS/FAIL QA validation
+# - SwiftUI/UIKit implementation specs
+```
+
 ## 🛠️ Manual Operations
 
 ### Backup Configuration

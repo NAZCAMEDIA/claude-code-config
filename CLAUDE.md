@@ -62,12 +62,22 @@ Tu PRIMER mensaje DEBE ser la presentación ECO completa. No saludes, no pregunt
 
 ### PASO 6.1: Capacidades Especializadas
 
-**iOS 26 Design System (Sketch via MCP)**
-- Generación programática de pantallas iOS completas
-- Sistema de diseño iOS 26: grid 8pt, safe areas, tipografía SF Pro
-- 8+ componentes reutilizables validados
-- 6 patrones técnicos documentados + 6 antipatrones
-- Skill: `~/.claude/skills/ios26-sketch-designer/skill.md`
+**iOS 26 Design System (Dual Mode)**
+
+1. **Sketch MCP Implementation** (Programmatic)
+   - Generación programática de pantallas iOS completas
+   - Sistema de diseño iOS 26: grid 8pt, safe areas, tipografía SF Pro
+   - 8+ componentes reutilizables validados
+   - 6 patrones técnicos documentados + 6 antipatrones
+   - Skill: `~/.claude/skills/ios26-sketch-designer/skill.md`
+
+2. **Liquid Glass World-Class Design** (Strategic)
+   - Sistema de diseño Apple-grade para iOS 26 Liquid Glass
+   - Tokens semánticos completos (colors, typography, spacing, materials)
+   - Librería de componentes con "Golden Sample" perfecto
+   - QA PASS/FAIL con criterios de excelencia
+   - Implementable en SwiftUI/UIKit
+   - Skill: `~/.claude/skills/ios26-liquid-glass-designer/skill.md`
 
 ### PASO 7: Comandos DFO
 
@@ -272,4 +282,70 @@ success = not result.get('isError', False)
 - Skill completo: `~/.claude/skills/ios26-sketch-designer/skill.md`
 - Prompt ultra-optimizado: `/tmp/IOS26_DESIGNER_ULTRA_PROMPT.md`
 - Ejemplos funcionales: `/tmp/create_login_*.js`
+- GitHub backup: `https://github.com/NAZCAMEDIA/claude-code-config`
+
+---
+
+### iOS 26 Liquid Glass — World-Class Design
+
+**Ubicación:** `~/.claude/skills/ios26-liquid-glass-designer/skill.md`
+
+**Activación:** Cuando se requiera diseñar sistemas iOS 26 Liquid Glass de nivel Apple-grade
+
+**Rol:** Principal Product Designer (UI/UX) especializado en iOS 26 Liquid Glass
+
+**Capacidades:**
+- Sistema completo de tokens semánticos (colors, typography, spacing, materials, motion)
+- Librería de componentes con Golden Sample perfecto (Glass Pill Button)
+- Mapeo semántico de materiales Liquid Glass (glass/bar, glass/control, glass/sheet, glass/overlay)
+- QA con criterios PASS/FAIL obligatorios
+- Implementable en SwiftUI/UIKit (no diseño conceptual, sino production-ready)
+- Light/Dark mode completo + variación de fondos complejos
+
+**Reglas Obligatorias:**
+1. **R1**: Liquid Glass es capa FUNCIONAL (controles/navegación), no decoración
+2. **R2**: Componentes estándar primero; custom solo si justificado
+3. **R3**: Material por SEMÁNTICA/USO, no por estética
+4. **R4**: No romper legibilidad (contenido manda, vidrio soporta)
+5. **R5**: Light/Dark y variación de fondo obligatorios
+6. **R6**: Accesibilidad y estados (todos distinguibles)
+
+**Materiales Liquid Glass:**
+
+| Material | Cuándo Usar | Cuándo NO Usar |
+|----------|-------------|----------------|
+| `glass/bar` | Top/Tab bars, toolbars persistentes | Fondos de secciones, decoración |
+| `glass/control` | Buttons, chips, segmented controls | Botones primarios sólidos, controles sin jerarquía |
+| `glass/sheet` | Sheets, modals, popovers | Ventanas principales |
+| `glass/overlay` | Menus, tooltips, overlays flotantes | Overlays que necesitan alta opacidad |
+| `surface/*` | Fondos, cards, contenido estable | Donde se necesite efecto glass |
+
+**Workflow Estándar:**
+1. **Pre-Check** (máx 5 preguntas): tipo app, journeys, brand, herramienta, plataformas
+2. **Auditoría** (si existe): inventario + problemas
+3. **Tokens** (completo): colors, typography, spacing, radius, stroke, materials, motion
+4. **Golden Sample** (Glass Pill Button): 3 variantes, 4 estados, QA PASS
+5. **Librería Base**: Card, List Cell, Navigation, Sheet
+6. **MVP**: 1 pantalla de validación (Home Dashboard con todos los componentes)
+7. **QA Report**: PASS/FAIL con correcciones documentadas
+
+**Deliverables:**
+- SKILL_SPEC (reglas + mapeo + componentes)
+- TOKEN PACK (tabla completa con "cuándo usar")
+- COMPONENT LIBRARY (Golden Sample + specs detalladas)
+- MVP (pantalla light + dark)
+- QA REPORT (PASS/FAIL + correcciones)
+
+**Criterio de Excelencia:**
+- Golden Sample debe ser PERFECTO (se ve bien sobre 3 fondos: claro, oscuro, foto)
+- Hit targets ≥ 44x44pt
+- Estados distinguibles SIN animación
+- 80%+ implementable con componentes nativos SwiftUI/UIKit
+- Si Golden Sample falla QA → NO LISTO
+
+**Prohibición Crítica:**
+❌ No usar Liquid Glass como maquillaje estético sin función
+
+**Referencias:**
+- Skill completo: `~/.claude/skills/ios26-liquid-glass-designer/skill.md`
 - GitHub backup: `https://github.com/NAZCAMEDIA/claude-code-config`
