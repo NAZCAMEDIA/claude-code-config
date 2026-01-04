@@ -1,0 +1,47 @@
+name: Daily Configuration Sync
+
+on:
+  schedule:
+    # Runs every day at 00:00 UTC (7:00 PM EST / 8:00 PM EDT)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  sync-config:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "ECO-NEMESIS-SYNC"
+          git config --global user.email "charlie@solaria.agency"
+
+      - name: Pull latest changes
+        run: |
+          git pull origin main || true
+
+      - name: Check for local changes
+        id: changes
+        run: |
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push if changes exist
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          git add -A
+          git commit -m "🤖 Daily auto-sync: $(date +'%Y-%m-%d %H:%M:%S UTC')"
+          git push origin main
+
+      - name: No changes detected
+        if: steps.changes.outputs.has_changes == 'false'
+        run: |
+          echo "✅ No configuration changes detected - skipping sync"

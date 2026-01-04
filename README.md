@@ -128,6 +128,49 @@ All plugins from `claude-code-plugins-plus` marketplace are enabled, including:
 - `security-gdpr-compliance` - Security and GDPR expert
 - And more...
 
+### 🎨 Specialized Skills
+
+#### iOS 26 Design System (Sketch via MCP)
+
+**NEW**: Programmatic iOS screen design capability using Sketch MCP server.
+
+**Capabilities:**
+- Generate complete iOS screens programmatically (login, signup, dashboards, etc.)
+- Full iOS 26 design system compliance (8pt grid, safe areas, typography)
+- Component library: buttons, inputs, text, navigation, cards
+- Automated layout with native Sketch grid systems
+- SF Pro typography with correct weights and sizes
+- iOS semantic color system implementation
+
+**Key Technical Achievements:**
+- 6 validated patterns documented (shape creation, text centering, button padding)
+- 6 antipatterns identified (missing fillType, background assignment, etc.)
+- 8+ reusable component templates
+- 13 iterations to perfect implementation
+- 1,500+ lines of validated Sketch JavaScript code
+
+**Files:**
+- Skill definition: `claude-code-cli/skills/ios26-sketch-designer/skill.md`
+- Ultra-optimized prompt: `/tmp/IOS26_DESIGNER_ULTRA_PROMPT.md`
+- Working examples: `/tmp/create_login_*.js`
+
+**Usage Example:**
+```bash
+# ECO can now generate complete iOS screens via:
+# - Direct MCP calls to Sketch
+# - Validated component templates
+# - Automated grid and layout configuration
+```
+
+**Learnings Documented:**
+- ShapePath vs Shape distinction
+- fillType requirement for all fills
+- Background property assignment timing
+- fixedWidth property for text centering
+- Button padding calculation patterns
+- Grid 8pt alignment formulas
+- MCP response handling (isError vs text)
+
 ## 🛠️ Manual Operations
 
 ### Backup Configuration
