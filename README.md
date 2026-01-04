@@ -219,6 +219,95 @@ All plugins from `claude-code-plugins-plus` marketplace are enabled, including:
 # - SwiftUI/UIKit implementation specs
 ```
 
+#### Apple Multiplatform Systems Engineer — Swift 6
+
+**NEW**: Staff/Principal Engineer-level multiplatform implementation with Swift 6 + SwiftUI.
+
+**Capabilities:**
+- Multiplatform architecture (iOS/macOS/visionOS/watchOS/tvOS)
+- Shared core + platform-specific adapters (#if os(...))
+- Modern concurrency (async/await, structured concurrency, @MainActor, strict concurrency)
+- Modern state management (@Observable for iOS 17+, ObservableObject fallback)
+- Mandatory testing (Swift Testing preferred, XCTest fallback)
+- CLI build + test automation (xcodebuild) with QA gates
+
+**Quality Gates:**
+- G1: No advance without compiling + tests passing (CLI validation)
+- G2: No main thread blocking (all IO/latency with async/await)
+- G3: Single source of truth for UI state (no duplication)
+- G4: Concurrency safe (@MainActor, strict concurrency, no data races)
+- G5: SwiftUI + standard APIs first (UIKit/AppKit only as adapters)
+- G6: Document decisions and trade-offs (SPEC mandatory)
+
+**Platform Matrix:**
+| Platform | Input | Navigation | Key Adaptations |
+|----------|-------|------------|-----------------|
+| iOS/iPadOS | Touch + keyboard/pointer | NavigationStack, sheets | Size classes, adaptive layouts |
+| macOS | Pointer + keyboard shortcuts | Windows/scenes, menu/commands | Dense layouts, multiple windows, ⌘ shortcuts |
+| visionOS | Spatial (gaze + gesture) | Spatial navigation | No mobile patterns, 3D legibility, depth |
+| watchOS | Digital Crown + tap | Simplified, short lists | Energy critical, brief interactions, max 5 items |
+| tvOS | Remote + focus engine | Focus-based | Directional navigation, focus hierarchy, grids |
+
+**Architecture Default:**
+```
+Shared/
+  ├── Domain/      (models, errors, protocols)
+  ├── UseCases/    (app logic)
+  └── Data/        (repos, services)
+Platforms/
+  ├── iOS/, macOS/, visionOS/, watchOS/, tvOS/
+Features/<Name>/
+  ├── UI/          (SwiftUI views)
+  ├── State/       (Store/ViewModel)
+  └── Routing/
+CompositionRoot/   (DI)
+```
+
+**Golden Sample: "Items" Feature**
+- List + detail with async load (simulated latency)
+- Add item, toggle completed
+- States: loading / empty / error + retry
+- Shared repository protocol + InMemory implementation
+- Platform adaptations:
+  - macOS: Command shortcuts (⌘N for new)
+  - watchOS: List limited to 5 items
+  - tvOS: Focus-based grid layout
+  - visionOS: Spatial depth, hover effects
+
+**Deliverables:**
+1. SPEC (max 50 lines): architecture + data flow + concurrency + testing + platform adaptations
+2. Files List (created/modified with line counts)
+3. Code (by files, only necessary)
+4. CLI Commands (executed + results: xcodebuild build/test)
+5. QA Report (PASS/FAIL for 8 criteria)
+
+**QA Criteria:**
+- Compiles iOS ✅ / ❌
+- Tests iOS ✅ / ❌ (min 6 tests: 3 repo + 1 store)
+- Compiles macOS ✅ / ❌
+- Tests macOS ✅ / ❌
+- Previews ✅ / ❌ (4 states: loading/empty/error/content)
+- Concurrency ✅ / ❌ (no main thread blocking)
+- Single Source ✅ / ❌ (no state duplication)
+- Platform Adapt ✅ / ❌ (reasonable adaptations)
+
+**Files:**
+- Skill definition: `claude-code-cli/skills/apple-multiplatform-swift-engineer/skill.md`
+
+**Excellence Criterion:**
+- Golden Sample must be IMPECCABLE: compiles + tests pass + previews work + correct state + reasonable adaptations
+- If fails → NOT READY, iterate until PASS
+
+**Usage Example:**
+```bash
+# ECO can now implement production-ready multiplatform features:
+# - Build + test verified via xcodebuild CLI
+# - Swift 6 concurrency patterns (@MainActor, async/await)
+# - @Observable state management (iOS 17+)
+# - Platform-specific UI adaptations
+# - Mandatory testing (Swift Testing / XCTest)
+```
+
 ## 🛠️ Manual Operations
 
 ### Backup Configuration

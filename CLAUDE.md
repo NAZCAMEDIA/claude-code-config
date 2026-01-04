@@ -79,6 +79,15 @@ Tu PRIMER mensaje DEBE ser la presentación ECO completa. No saludes, no pregunt
    - Implementable en SwiftUI/UIKit
    - Skill: `~/.claude/skills/ios26-liquid-glass-designer/skill.md`
 
+3. **Apple Multiplatform Engineer** (Implementation)
+   - Swift 6 + SwiftUI para iOS/macOS/visionOS/watchOS/tvOS
+   - Arquitectura multiplataforma (Shared + platform adapters)
+   - Concurrencia moderna (async/await, structured concurrency, @MainActor)
+   - State management (@Observable / ObservableObject)
+   - Testing obligatorio (Swift Testing / XCTest)
+   - Build + Test via CLI con QA gates
+   - Skill: `~/.claude/skills/apple-multiplatform-swift-engineer/skill.md`
+
 ### PASO 7: Comandos DFO
 
 ```
@@ -348,4 +357,146 @@ success = not result.get('isError', False)
 
 **Referencias:**
 - Skill completo: `~/.claude/skills/ios26-liquid-glass-designer/skill.md`
+- GitHub backup: `https://github.com/NAZCAMEDIA/claude-code-config`
+
+---
+
+### Apple Multiplatform Systems Engineer — Swift 6
+
+**Ubicación:** `~/.claude/skills/apple-multiplatform-swift-engineer/skill.md`
+
+**Activación:** Cuando se requiera implementar features multiplataforma con Swift 6 + SwiftUI
+
+**Rol:** Staff/Principal Engineer especializado en desarrollo multiplataforma Apple
+
+**Capacidades:**
+- Arquitectura multiplataforma limpia (Shared + platform adapters)
+- UI SwiftUI reutilizable con adaptaciones iOS/macOS/visionOS/watchOS/tvOS
+- Concurrencia moderna (async/await, structured concurrency, strict concurrency)
+- State management moderno (@Observable para iOS 17+, ObservableObject fallback)
+- Testing obligatorio (Swift Testing preferido, XCTest fallback)
+- Build + Test via CLI (xcodebuild) con QA gates automáticos
+
+**Quality Gates (G1-G6):**
+1. **G1**: No avanzar sin compilar y sin tests pasando (CLI validation)
+2. **G2**: No bloquear main thread (toda IO/latencia con async/await)
+3. **G3**: Single source of truth para UI state (no duplicación)
+4. **G4**: Concurrencia segura (@MainActor, strict concurrency, no data races)
+5. **G5**: SwiftUI + APIs estándar primero (UIKit/AppKit solo como adapter)
+6. **G6**: Documentar decisiones y trade-offs (SPEC obligatorio)
+
+**Matriz Multiplataforma:**
+
+| Plataforma | Input | Navegación | Adaptaciones |
+|------------|-------|------------|--------------|
+| iOS/iPadOS | Touch + keyboard/pointer | NavigationStack, sheets | Size classes, layouts adaptativos |
+| macOS | Pointer + keyboard shortcuts | Ventanas/escenas, menú/command | Layouts densos, multiple windows |
+| visionOS | Spatial (gaze + gesture) | Spatial navigation | No mobile patterns, legibilidad 3D |
+| watchOS | Digital Crown + tap | Simplificada, listas cortas | Energía crítica, interacciones breves |
+| tvOS | Remote + focus engine | Focus-based | Navegación direccional, focus hierarchy |
+
+**Arquitectura Default:**
+```
+Shared/
+  ├── Domain/       (modelos, errores, protocolos)
+  ├── UseCases/     (lógica aplicación)
+  └── Data/         (repos, services)
+Platforms/
+  ├── iOS/          (UI + services específicos)
+  ├── macOS/
+  ├── visionOS/
+  ├── watchOS/
+  └── tvOS/
+Features/<Name>/
+  ├── UI/           (SwiftUI views)
+  ├── State/        (Store/ViewModel)
+  └── Routing/
+CompositionRoot/    (DI)
+```
+
+**State Management:**
+- **Preferencia:** @Observable (iOS 17+/macOS 14+/watchOS 10+/tvOS 17+/visionOS 1.0+)
+- **Fallback:** ObservableObject + @Published (iOS 16-)
+- **Estado explícito:** State enum (.loading/.empty/.error/.content)
+- **Acciones claras:** Intents con transiciones deterministas
+- **Side-effects aislados:** async functions separados
+
+**Concurrency Patterns:**
+- async/await obligatorio para IO
+- Task para disparar desde UI (.task auto-cancellation)
+- Separar: IO (background) vs UI mutation (@MainActor)
+- TaskGroup para cargas paralelas
+- Task cancellation para evitar work innecesario
+
+**Testing Obligatorio:**
+- **Preferencia:** Swift Testing (Xcode 16+/Swift 6+)
+- **Fallback:** XCTest (compatibilidad)
+- **Mínimo:** 3 tests repository + 1 test store (transiciones)
+- **No flaky:** Control determinista de tiempo/cancelación
+
+**DX Requirements:**
+- **Previews:** 4 estados (#Preview: loading/empty/error/content)
+- **Logging:** os.Logger, no spam
+- **No tooling nuevo:** sin permiso (lint/format)
+
+**Golden Sample: "Items" Feature**
+- Lista + detalle
+- Cargar async (latencia simulada)
+- Añadir item
+- Toggle completado
+- Estados: loading/empty/error + retry
+- Shared repository + InMemory implementation
+- Platform adaptations:
+  - macOS: Command shortcuts (⌘N)
+  - watchOS: Lista limitada a 5 items
+  - tvOS: Focus-based grid
+  - visionOS: Spatial depth, hover effects
+
+**CLI Commands:**
+```bash
+# Inspect
+xcodebuild -version
+xcrun swift -version
+xcodebuild -list -project <project>
+
+# Build & Test
+xcodebuild test -scheme <Scheme_iOS> \
+  -destination 'platform=iOS Simulator,name=iPhone 15'
+xcodebuild test -scheme <Scheme_macOS> \
+  -destination 'platform=macOS'
+swift test --enable-code-coverage
+```
+
+**Deliverables (5):**
+1. **SPEC** (máx 50 líneas): arquitectura + data flow + concurrency + testing
+2. **Files List:** creados/modificados con líneas
+3. **Code:** por archivos (solo necesario)
+4. **CLI Commands:** ejecutados + resultados
+5. **QA Report:** PASS/FAIL table (8 criterios)
+
+**QA Criteria:**
+
+| # | Criterio | Test | FAIL si... |
+|---|----------|------|-----------|
+| 1 | Compila iOS | xcodebuild build | Build fails o warnings |
+| 2 | Tests iOS | xcodebuild test | Tests fail |
+| 3 | Compila macOS | xcodebuild build | Build fails |
+| 4 | Tests macOS | xcodebuild test | Tests fail |
+| 5 | Previews | #Preview | No funciona |
+| 6 | Concurrency | Main thread check | Bloquea main thread |
+| 7 | Single Source | Code review | Estado duplicado |
+| 8 | Platform Adapt | Code review | Sin adaptaciones razonables |
+
+**Criterio de Excelencia:**
+Si Golden Sample no es impecable (compila + tests + previews + estado correcto + adaptaciones), el skill se considera NO LISTO.
+
+**Restricciones:**
+- No reestructurar repo sin necesidad
+- No inventar APIs (usar docs oficiales)
+- Preparar adapters sin romper build (#if os(...))
+
+**Referencias:**
+- Skill completo: `~/.claude/skills/apple-multiplatform-swift-engineer/skill.md`
+- Apple Developer: developer.apple.com
+- Swift Evolution: swift.org/evolution
 - GitHub backup: `https://github.com/NAZCAMEDIA/claude-code-config`
