@@ -87,11 +87,12 @@
   "alwaysThinkingEnabled": true,
   "mcpServers": {
     "solaria-dfo": {
-      "type": "http",
-      "url": "https://dfo.solaria.agency/mcp",
-      "headers": {
-        "Authorization": "Bearer default",
-        "X-Project-Id": "akademate"
+      "command": "node /Users/carlosjperez/Documents/GitHub/claude-code-config/mcp-servers/solaria-dfo/dist/index.js",
+      "env": {
+        "DFO_SERVER": "https://dfo.solaria.agency",
+        "DFO_MCP_URL": "https://dfo.solaria.agency/mcp",
+        "DFO_AUTH_TOKEN": "default",
+        "PROJECT_NAME": "claude-code-config"
       }
     },
     "sequential-thinking": {
@@ -130,6 +131,15 @@
         "-y",
         "mcp-mermaid"
       ]
+    },
+    "solaria_dfo": {
+      "command": "node /Users/carlosjperez/Documents/GitHub/claude-code-config/mcp-servers/solaria-dfo/dist/index.js",
+      "env": {
+        "DFO_SERVER": "https://dfo.solaria.agency",
+        "DFO_MCP_URL": "https://dfo.solaria.agency/mcp",
+        "DFO_AUTH_TOKEN": "default",
+        "PROJECT_NAME": "claude-code-config"
+      }
     }
   }
 }
