@@ -1,0 +1,33 @@
+name: Auto-sync OpenCode Sessions
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'mcp-servers/opencode-bridge/.opencode_sessions.json'
+      - 'claude-code-cli/settings.json'
+      - 'CLAUDE.md'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update OpenCode Bridge Session State
+        run: |
+          ./mcp-servers/opencode-bridge/opencode-sync.sh
+
+      - name: Commit Updated Sessions
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add mcp-servers/opencode-bridge/.opencode_sessions.json
+          git diff --quiet --exit-code && git commit -m "[auto-sync] Update OpenCode session state" || echo "No changes to commit"
+
+      - name: Push
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
