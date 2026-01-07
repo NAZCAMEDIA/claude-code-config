@@ -1,0 +1,58 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+  "comment": "Oh My OpenCode configurado para Z.AI GLM4.7 Coding Plan - Todos los agentes usan el mismo modelo",
+  "google_auth": false,
+  "agents": {
+    "Sisyphus": {
+      "model": "zai/glm-4.7",
+      "comment": "Modelo principal - Z.AI GLM4.7 Coding Plan"
+    },
+    "oracle": {
+      "model": "zai/glm-4.7",
+      "comment": "Arquitectura, code review, estrategia"
+    },
+    "librarian": {
+      "model": "zai/glm-4.7",
+      "comment": "Multi-repo analysis, doc lookup"
+    },
+    "explore": {
+      "model": "zai/glm-4.7",
+      "comment": "Codebase exploration rápido"
+    },
+    "frontend-ui-ux-engineer": {
+      "model": "zai/glm-4.7",
+      "comment": "Desarrollo frontend"
+    },
+    "document-writer": {
+      "model": "zai/glm-4.7",
+      "comment": "Escritura técnica"
+    },
+    "multimodal-looker": {
+      "model": "zai/glm-4.7",
+      "comment": "Contenido visual"
+    },
+    "build": {
+      "model": "zai/glm-4.7",
+      "comment": "Agente builder por defecto"
+    },
+    "plan": {
+      "model": "zai/glm-4.7",
+      "comment": "Agente planner por defecto"
+    }
+  },
+  "sisyphus_agent": {
+    "disabled": false,
+    "default_builder_enabled": false,
+    "planner_enabled": true,
+    "replace_plan": true
+  },
+  "ralph_loop": {
+    "enabled": true,
+    "default_max_iterations": 100
+  },
+  "background_task": {
+    "defaultConcurrency": 5
+  },
+  "disabled_mcps": ["websearch", "context7", "grep_app"],
+  "comment": "MCPs desactivados por defecto - activar si se necesita web search, docs, GitHub search"
+}

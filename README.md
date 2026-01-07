@@ -24,13 +24,35 @@ This repository contains a complete backup and sync solution for:
 
 ## 🚀 Quick Install
 
-### One-Line Install (macOS)
+### OpenCode Installation (Z.AI GLM)
+
+Para usar este repositorio en OpenCode con Z.AI GLM4.7:
+
+```bash
+# Clone repository
+git clone https://github.com/NAZCAMEDIA/claude-code-config.git
+cd claude-code-config
+
+# Run OpenCode installer with Oh My OpenCode + Z.AI GLM
+./install-opencode-zai.sh
+```
+
+Este script configura:
+- **Oh My OpenCode** (Sisyphus Agent Harness)
+- Z.AI GLM4.7 con dos modos:
+  - **[1] Directo** (asume soporte nativo en Crush)
+  - **[2] Con Proxy** (usa Z.ai2api - OpenAI-compatible)
+- Todos los agentes usando `zai/glm-4.7`
+
+### Claude Code CLI Installation
+
+#### One-Line Install (macOS)
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/NAZCAMEDIA/claude-code-config/main/scripts/install.sh | bash
 ```
 
-### Manual Install
+#### Manual Install
 
 ```bash
 # Clone repository
@@ -46,6 +68,10 @@ cd claude-code-config
 ```
 claude-code-config/
 ├── README.md
+├── OPENCODE_ZAI_SETUP.md          # OpenCode + Z.AI GLM docs
+├── install-opencode-zai.sh         # OpenCode installer script
+├── .opencode/
+│   └── oh-my-opencode.json        # Oh My OpenCode config template
 ├── claude-code-cli/
 │   ├── claude_code_config.json      # MCP servers configuration
 │   ├── settings.json               # Main settings with plugins/permissions
@@ -60,6 +86,87 @@ claude-code-config/
     ├── backup.sh                  # Backup configuration
     ├── auto-sync.sh               # Real-time auto-sync
     └── setup-auto-sync.sh         # Setup automatic sync
+```
+
+## 🦾 OpenCode Configuration (Z.AI GLM)
+
+### Oh My OpenCode + Z.AI GLM Setup
+
+Este repositorio incluye configuración para usar **Oh My OpenCode** con **Z.AI GLM** (Code API) en OpenCode.
+
+**Agente Principal: Sisyphus**
+- Orquestador potente para OpenCode
+- Planifica, delega y ejecuta tareas complejas
+- Usa subagentes especializados en paralelo
+- Incluye keyword `ultrawork` (ulw) para máximo rendimiento
+
+**Agentes Especializados (todos con Z.AI GLM):**
+
+| Agente | Función |
+|---------|---------|
+| **Sisyphus** | Orquestador principal - Planificación y coordinación |
+| **Oracle** | Arquitectura, code review, estrategia |
+| **Librarian** | Multi-repo analysis, doc lookup, implementaciones |
+| **Explore** | Exploración rápida de codebase (contextual grep) |
+| **Frontend UI/UX Engineer** | Desarrollo frontend/UI |
+| **Document Writer** | Escritura técnica y documentación |
+| **Multimodal Looker** | Contenido visual (PDFs, imágenes, diagramas) |
+
+### Características Activadas
+
+- ✅ **Background Agents**: Ejecuta agentes en paralelo
+- ✅ **LSP/AST Tools**: Refactorización determinista
+- ✅ **Todo Continuation Enforcer**: Fuerza completar tareas
+- ✅ **Comment Checker**: Reduce comentarios excesivos
+- ✅ **Context Window Monitor**: Manejo de límites de contexto
+- ✅ **Keyword Detector**: Detecta `ultrawork`, `search`, `analyze`
+
+### Configuración
+
+**Archivo de configuración:**
+```
+~/.config/opencode/oh-my-opencode.json
+```
+
+**Para cambiar el modelo Z.AI:**
+```json
+{
+  "agents": {
+    "Sisyphus": {
+      "model": "zai/glm-code"  // Reemplazar con modelo correcto
+    },
+    "oracle": {
+      "model": "zai/glm-code"
+    },
+    // ... todos los agentes
+  }
+}
+```
+
+### Uso
+
+```bash
+# Iniciar OpenCode
+opencode
+
+# Agregar 'ultrawork' o 'ulw' para modo máximo
+"Implementa REST API con ultrawork"
+
+# Usar agentes específicos
+"@oracle revisa esta arquitectura"
+"@librarian busca implementaciones de esto"
+"@explora política de esta característica"
+```
+
+### Ralph Loop
+
+Loop de desarrollo auto-referencial que corre hasta completar tarea:
+
+```bash
+# Iniciar Ralph Loop
+/ralph-loop "Construye una API REST"
+
+# Se detiene cuando detecta <promise>DONE</promise>
 ```
 
 ## 🔄 Auto-Sync
@@ -339,6 +446,34 @@ tail -f ~/.claude/sync.log
 # Linux (if using file watchers)
 tail -f ~/.claude/sync.log
 ```
+
+## 📚 Additional Documentation
+
+### OpenCode + Z.AI GLM Configuration
+
+Para configuración detallada de OpenCode con Oh My OpenCode y Z.AI GLM:
+
+📖 **[OPENCODE_ZAI_SETUP.md](./OPENCODE_ZAI_SETUP.md)**
+
+Incluye:
+- Instalación automática
+- Descripción de todos los agentes
+- Configuración de permisos
+- Solución de problemas
+- Referencias
+
+### Crush + Z.AI GLM (Proxy Local)
+
+Para configuración avanzada con Z.ai2api (proxy local) que convierte Zhipu AI a formato OpenAI-compatible:
+
+📖 **[CRUSH_ZAI_CONFIG.md](./CRUSH_ZAI_CONFIG.md)**
+
+Incluye:
+- Endpoints de Z.AI (chat.z.ai)
+- Instalación del proxy Z.ai2api
+- Configuración de Crush con proveedor personalizado
+- Modos de thinking chain
+- Troubleshooting
 
 ## 🔐 Security Notes
 
