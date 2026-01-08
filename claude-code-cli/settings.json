@@ -27,10 +27,7 @@
       "ReadMcpResourceTool",
       "mcp__solaria-dfo",
       "mcp__sequential-thinking",
-      "mcp__playwright",
-      "mcp__context7",
-      "mcp__coderabbit",
-      "mcp__mcp-mermaid"
+      "mcp__claude-in-chrome"
     ],
     "deny": [],
     "defaultMode": "bypassPermissions"
@@ -67,9 +64,16 @@
     "accessibility-test-scanner@claude-code-plugins-plus": true,
     "devops-automation-pack@claude-code-plugins-plus": true,
     "fullstack-starter-pack@claude-code-plugins-plus": true,
-    "frontend-design@claude-code-plugins": true
+    "frontend-design@claude-code-plugins": true,
+    "ralph-wiggum@anthropics-claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
+    "anthropics-claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
+    },
     "claude-code-plugins-plus": {
       "source": {
         "source": "github",
@@ -103,36 +107,6 @@
       "args": [
         "-y",
         "@modelcontextprotocol/server-sequential-thinking"
-      ]
-    },
-    "playwright": {
-      "command": "npx",
-      "args": [
-        "@playwright/mcp@latest"
-      ]
-    },
-    "context7": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@upstash/context7-mcp"
-      ]
-    },
-    "coderabbit": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "coderabbit-mcp@latest"
-      ],
-      "env": {
-        "CODERABBIT_API_KEY": "cr-c419e0bc5d8c95ca2a52d33a0ade010c953c448c54184e02a13a2c3b51"
-      }
-    },
-    "mcp-mermaid": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "mcp-mermaid"
       ]
     },
     "solaria_dfo": {

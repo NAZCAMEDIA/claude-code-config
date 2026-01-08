@@ -1,0 +1,17 @@
+{
+  "name": "solaria-dfo-mcp-server",
+  "version": "2.0.0",
+  "description": "MCP Server for SOLARIA Digital Field Operations v2.0 - Robust connection handling with health checks",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc --outDir dist",
+    "build:v2": "tsc src/index-v2.ts --outDir dist-v2 --moduleResolution node",
+    "watch": "tsc --watch --outDir dist",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.3.0",
+    "axios": "^1.7.0"
+  }
+}

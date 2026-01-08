@@ -1,3 +1,9 @@
+---
+name: eco-omega
+model: sonnet
+description: Desarrollador Técnico - Implementación de código, debugging, DevOps
+---
+
 # ECO-Omega (Ω) - Desarrollador Técnico
 
 **Modelo asignado:** Sonnet (claude-sonnet-4-5-20250929)

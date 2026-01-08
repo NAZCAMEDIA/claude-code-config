@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Status Line for Claude Code - Enhanced with Style, Model, Branch, and Context Usage
-# Format: CTO | Opus-4.5 | main | Ctx: 45% | user@host:dir time
+# Status Line for Claude Code - Enhanced with Style, Model, Branch, Last Commit, and Context Usage
+# Format: CTO | Opus-4.5 | main | d7afe84 docs: Add Taskosaur... | Ctx: 45% | user@host:dir time
 
 # Read JSON input
 input=$(cat)
@@ -51,21 +51,25 @@ elif [[ "$model_id" == *"haiku"* ]]; then
     model_display="Haiku"
 fi
 
-# Get git branch (if in a git repo)
+# Get git branch and last commit (if in a git repo)
 git_branch=""
+git_last_commit=""
 if [ -d "$current_dir/.git" ] || git -C "$current_dir" rev-parse --git-dir > /dev/null 2>&1; then
     git_branch=$(git -C "$current_dir" rev-parse --abbrev-ref HEAD 2>/dev/null)
     if [ -z "$git_branch" ]; then
         git_branch="(no branch)"
     fi
+    # Get last commit (short hash + first 50 chars of message)
+    git_last_commit=$(git -C "$current_dir" log -1 --pretty=format:"%h %s" 2>/dev/null | cut -c1-60)
 fi
 
-# Calculate context usage percentage
-if [ "$context_size" -gt 0 ]; then
+# Calculate context usage percentage (with validation)
+context_pct=0
+if [[ "$context_size" =~ ^[0-9]+$ ]] && [ "$context_size" -gt 0 ]; then
+    total_input=${total_input:-0}
+    total_output=${total_output:-0}
     total_tokens=$((total_input + total_output))
     context_pct=$((total_tokens * 100 / context_size))
-else
-    context_pct=0
 fi
 
 # ANSI color codes for terminal
@@ -78,17 +82,32 @@ red='\033[0;31m'
 reset='\033[0m'
 
 # Build enhanced status line
-# Format: CTO | Opus-4.5 | main | Ctx: 45% | user@host:dir time
+# Format: CTO | Opus-4.5 | main | d7afe84 docs: Add Taskosaur... | Ctx: 45% | user@host:dir time
 if [ -n "$git_branch" ]; then
-    printf "${blue}%s${reset} ${magenta}|${reset} ${yellow}%s${reset} ${magenta}|${reset} ${green}%s${reset} ${magenta}|${reset} Ctx: ${yellow}%d%%${reset} ${magenta}|${reset} ${cyan}%s@%s${reset}:${yellow}%s${reset} ${green}%s${reset}" \
-        "$style_display" \
-        "$model_display" \
-        "$git_branch" \
-        "$context_pct" \
-        "$username" \
-        "$hostname" \
-        "$relative_to_home" \
-        "$current_time"
+    if [ -n "$git_last_commit" ]; then
+        # With git branch and commit
+        printf "${blue}%s${reset} ${magenta}|${reset} ${yellow}%s${reset} ${magenta}|${reset} ${green}%s${reset} ${magenta}|${reset} ${cyan}%s${reset} ${magenta}|${reset} Ctx: ${yellow}%d%%${reset} ${magenta}|${reset} ${cyan}%s@%s${reset}:${yellow}%s${reset} ${green}%s${reset}" \
+            "$style_display" \
+            "$model_display" \
+            "$git_branch" \
+            "$git_last_commit" \
+            "$context_pct" \
+            "$username" \
+            "$hostname" \
+            "$relative_to_home" \
+            "$current_time"
+    else
+        # With git branch but no commit
+        printf "${blue}%s${reset} ${magenta}|${reset} ${yellow}%s${reset} ${magenta}|${reset} ${green}%s${reset} ${magenta}|${reset} Ctx: ${yellow}%d%%${reset} ${magenta}|${reset} ${cyan}%s@%s${reset}:${yellow}%s${reset} ${green}%s${reset}" \
+            "$style_display" \
+            "$model_display" \
+            "$git_branch" \
+            "$context_pct" \
+            "$username" \
+            "$hostname" \
+            "$relative_to_home" \
+            "$current_time"
+    fi
 else
     # No git branch - simpler format
     printf "${blue}%s${reset} ${magenta}|${reset} ${yellow}%s${reset} ${magenta}|${reset} Ctx: ${yellow}%d%%${reset} ${magenta}|${reset} ${cyan}%s@%s${reset}:${yellow}%s${reset} ${green}%s${reset}" \

@@ -1,3 +1,9 @@
+---
+name: eco-sigma
+model: haiku
+description: Ejecutor Rápido - Git ops, file ops, tareas mecánicas
+---
+
 # ECO-Sigma (Σ) - Ejecutor Rápido
 
 **Modelo asignado:** Haiku (claude-haiku-4-5-20250617)
