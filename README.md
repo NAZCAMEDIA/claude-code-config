@@ -158,16 +158,45 @@ opencode
 "@explora política de esta característica"
 ```
 
-### Ralph Loop
+### 🔄 Ralph-Wiggum Plugin - Autonomous Iterative Loops
 
-Loop de desarrollo auto-referencial que corre hasta completar tarea:
+**Plugin oficial de Anthropic** para Claude Code que implementa bucles iterativos autónomos.
+
+Claude trabaja automáticamente en la misma tarea, refinando su trabajo, hasta cumplir criterios específicos.
+
+#### Instalación
+
+✅ **Ya habilitado en esta configuración**
 
 ```bash
-# Iniciar Ralph Loop
-/ralph-loop "Construye una API REST"
-
-# Se detiene cuando detecta <promise>DONE</promise>
+# Para aplicar en tu sistema:
+./sync-config.sh
+# Luego reinicia Claude Code
 ```
+
+#### Uso
+
+```bash
+# Iniciar loop autónomo
+/ralph-loop "Criterio de completación"
+
+# Ejemplos:
+/ralph-loop "Implementar JWT auth. Criterio: Tests >80% coverage, Lighthouse >90"
+/ralph-loop "Completar DFO-547. Criterio: todos los tests verdes + PR lista"
+/ralph-loop "Resolver bug production. Criterio: issue reproducido, fix implementado, tests pasen"
+
+# Cancelar si algo falla
+/cancel-ralph
+```
+
+#### Documentación Completa
+
+Consulta **[RALPH_PLUGIN.md](./RALPH_PLUGIN.md)** para:
+- 📋 Ejemplos detallados
+- 🎯 Cómo escribir criterios efectivos
+- 🔧 Troubleshooting y best practices
+- 🔗 Integración con DFO + TodoWrite
+- ⚡ Performance tips
 
 ## 🔄 Auto-Sync
 
@@ -207,21 +236,36 @@ This will:
 
 | Server | Type | Description |
 |--------|------|-------------|
-| `solaria-dfo` | HTTP | Solaria Digital Factory API |
-| `n8n` | Command | n8n automation integration |
-| `sequential-thinking` | Command | Enhanced reasoning |
-| `playwright` | Command | Browser automation |
-| `context7` | Command | Up-to-date documentation |
-| `coderabbit` | Command | AI code reviews |
-| `mcp-mermaid` | Command | Diagram generation |
+| `solaria-dfo` | HTTP | SOLARIA Digital Factory Operations |
+| `sequential-thinking` | Command | Enhanced reasoning and Chain-of-Thought |
+| `claude-in-chrome` | Browser | Browser automation (Playwright-based) |
 
 ### Enabled Plugins
 
-All plugins from `claude-code-plugins-plus` marketplace are enabled, including:
-- Security tools (penetration-tester, secret-scanner, etc.)
-- DevOps tools (ci-cd-pipeline-builder, monitoring-stack-deployer, etc.)
-- API tools (api-sdk-generator, rest-api-generator, etc.)
-- Database tools (database-schema-designer, migration-manager, etc.)
+#### From Official Marketplaces
+
+**Anthropic Official** (`anthropics-claude-plugins-official`):
+- 🔄 **ralph-wiggum** - Autonomous iterative development loops
+
+**Claude Code Plus** (`claude-code-plugins-plus`):
+- 🔒 Security tools (penetration-tester, secret-scanner, owasp-compliance-checker, etc.)
+- 🚀 DevOps tools (ci-cd-pipeline-builder, monitoring-stack-deployer, docker-compose-generator, etc.)
+- 📡 API tools (api-sdk-generator, rest-api-generator, graphql-server-builder, etc.)
+- 💾 Database tools (database-schema-designer, database-migration-manager, query-performance-analyzer, etc.)
+- ♿ Accessibility tools (accessibility-test-scanner, etc.)
+
+**Total: 29 plugins enabled**
+
+#### Quick Reference
+
+| Category | Plugins |
+|----------|---------|
+| **Autonomous** | ralph-wiggum |
+| **Security** | penetration-tester, secret-scanner, security-audit-reporter, container-security-scanner |
+| **API** | rest-api-generator, graphql-server-builder, api-rate-limiter, api-mock-server |
+| **Database** | database-migration-manager, database-schema-designer |
+| **Infrastructure** | infrastructure-as-code-generator, ci-cd-pipeline-builder, docker-compose-generator |
+| **Monitoring** | monitoring-stack-deployer, query-performance-analyzer |
 
 ### Agents Available
 
