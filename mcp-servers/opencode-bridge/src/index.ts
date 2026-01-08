@@ -1,10 +1,23 @@
-/**
- * OpenCode Bridge MCP Server v1.0.0
- *
- * MCP Bridge simple que integra OpenCode con SOLARIA DFO
- */
+#!/usr/bin/env node
 
-const OPENCODE_BRIDGE_DIR = `${__dirname}/opencode-bridge`;
+import { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import {
+  CallToolRequestSchema,
+  ListToolsRequestSchema,
+} from '@modelcontextprotocol/sdk/types.js';
+
+const server = new Server(
+  {
+    name: 'opencode-bridge',
+    version: '1.0.0',
+  },
+  {
+    capabilities: {
+      tools: {},
+    },
+  }
+);
 
 const tools = [
   {
@@ -25,17 +38,11 @@ const tools = [
   },
 ];
 
-const server = {
-  name: 'opencode-bridge',
-  version: '1.0.0',
-  tools,
-};
-
-server.setRequestHandler('tools/list', async () => {
+server.setRequestHandler(ListToolsRequestSchema, async () => {
   return { tools };
 });
 
-server.setRequestHandler('tools/call', async (request) => {
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const name = request.params.name;
   const args = request.params.arguments || {};
 
@@ -45,17 +52,14 @@ server.setRequestHandler('tools/call', async (request) => {
     content: [
       {
         type: 'text',
-        text: `Simple test - ${name} called with args: ${JSON.stringify(args)}`,
+        text: `OpenCode Bridge - ${name} called with args: ${JSON.stringify(args)}`,
       },
     ],
   };
 });
 
-const transport = require('@modelcontextprotocol/sdk/server/stdio.js').StdioServerTransport();
-server.connect(transport).then(() => {
-  console.error('[OpenCode Bridge] Server running and ready');
-  console.error(`[OpenCode Bridge] Available tools: ${tools.map(t => t.name).join(', ')}`);
-}).catch((error) => {
-  console.error('[OpenCode Bridge] Fatal error:', error);
-  process.exit(1);
-});
+const transport = new StdioServerTransport();
+await server.connect(transport);
+
+console.error('[OpenCode Bridge] Server running and ready');
+console.error(`[OpenCode Bridge] Available tools: ${tools.map((t) => t.name).join(', ')}`);
