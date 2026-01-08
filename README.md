@@ -15,8 +15,9 @@ This repository contains a complete backup and sync solution for:
 - 🎨 **Status Line**: Custom statusline script with comprehensive system info
 - 🤖 **Agents**: Custom AI agents for various domains (React, PostgreSQL, Security, etc.)
 - 🔧 **Skills**: Specialized tools and workflows
-- 🌐 **MCP Servers**: Multiple MCP server configurations (sequential-thinking, playwright, context7, etc.)
-- 🔌 **Plugins**: Enabled plugins list and marketplaces
+- 🌐 **MCP Servers**: Multiple MCP server configurations (sequential-thinking, sequential-thinking, etc.)
+- 🔌 **Plugins**: 29 enabled plugins (including ralph-wiggum)
+- ⚡ **Commands**: Slash commands for model switching, Ralph loops, DFO sync
 
 ### Claude Desktop
 - 🖥️ **Desktop Configuration**: Main config with MCP servers
@@ -197,6 +198,59 @@ Consulta **[RALPH_PLUGIN.md](./RALPH_PLUGIN.md)** para:
 - 🔧 Troubleshooting y best practices
 - 🔗 Integración con DFO + TodoWrite
 - ⚡ Performance tips
+
+## ⚡ Custom Commands - Model Switcher
+
+**NEW**: Comandos personalizados para cambiar rápidamente entre modelos.
+
+### Model Switching Commands
+
+Cambia de modelo sin reiniciar Claude Code:
+
+```bash
+/haiku    # Cambiar a Haiku 4.5 (rápido, barato)
+/sonnet   # Cambiar a Sonnet 4.5 (equilibrio recomendado)
+/opus     # Cambiar a Opus 4.5 (máxima capacidad)
+```
+
+| Modelo | Velocidad | Capacidad | Costo | Ideal Para |
+|--------|-----------|-----------|-------|-----------|
+| **Haiku** | ⚡⚡⚡ | ⭐⭐ | 💰 | Git, búsqueda, tareas rápidas |
+| **Sonnet** | ⚡⚡ | ⭐⭐⭐ | 💰💰 | Desarrollo (RECOMENDADO) |
+| **Opus** | ⚡ | ⭐⭐⭐⭐⭐ | 💰💰💰 | Arquitectura, estrategia |
+
+### Flujo de Trabajo
+
+**Desarrollo simple:**
+```
+/sonnet
+# Escribir código, tests, validar
+```
+
+**Tarea de arquitectura:**
+```
+/opus
+# Diseñar, planificar, estrategia
+/sonnet
+# Implementar
+```
+
+**Operación rápida:**
+```
+/haiku
+# Git, búsqueda, operaciones mecánicas
+```
+
+### Documentación Completa
+
+Ver **[COMMANDS_REFERENCE.md](./COMMANDS_REFERENCE.md)** para:
+- 📊 Comparativa detallada de modelos
+- 🎯 Cuándo usar cada modelo
+- 💰 Precios y costos
+- 🔗 Integración con ECO
+- 🚀 Flujos de trabajo recomendados
+
+---
 
 ## 🔄 Auto-Sync
 
