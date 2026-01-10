@@ -79,6 +79,9 @@ claude-code-config/
 │   ├── statusline-comprehensive.sh   # Custom statusline script
 │   ├── agents/                    # Custom AI agents
 │   └── skills/                    # Custom skills and workflows
+├── COMMANDS_REFERENCE.md          # Custom commands guide (/haiku, /sonnet, /opus)
+├── STATUSLINE_GUIDE.md            # Status line explanation (Ctx: %, colors, visual bar)
+├── RALPH_PLUGIN.md                # Ralph-Wiggum autonomous loop documentation
 ├── claude-desktop/
 │   ├── config.json                 # Desktop configuration
 │   └── extensions-installations.json # Installed extensions
@@ -249,6 +252,81 @@ Ver **[COMMANDS_REFERENCE.md](./COMMANDS_REFERENCE.md)** para:
 - 💰 Precios y costos
 - 🔗 Integración con ECO
 - 🚀 Flujos de trabajo recomendados
+
+---
+
+## 📊 Status Line - Context Monitor
+
+**NEW**: Barra de estado visual con indicador de contexto y colores dinámicos.
+
+### Visual Status Line
+
+```
+CTO | Opus-4.5 | main | e6c6ad2 DOCS: Deploy... | Ctx: [███░░░░░░░] 30% | user@host:~ 12:37
+```
+
+### Context Usage Indicator (`Ctx: XX%`)
+
+Muestra el porcentaje de tu ventana de contexto (200K tokens) en uso:
+
+| Rango | Color | Indicador | Significado |
+|-------|-------|-----------|-------------|
+| 1-79% | 🟢 Verde | `[████░░░░]` | Normal - Sigue trabajando |
+| 80-89% | 🟠 Naranja | `[████████░░]` | Alerta - Prepárate para guardar |
+| 90-99% | 🔴 Rojo | `[█████████░]` | Crítico - Guardar contexto AHORA |
+| 100%+ | 🚨 Rojo | `[██████████]` | Auto-compactación en progreso |
+
+### Qué Significa
+
+- **Ctx: 30%** = Utilizas 60K tokens de 200K disponibles (170K libres)
+- **Ctx: 85%** = Utilizas 170K tokens (30K libres) - ⚠️ Guardar contexto
+- **Ctx: 100%** = Límite alcanzado - 🚨 Claude está compactando
+
+### Acciones Recomendadas
+
+**En Verde (1-79%):**
+```bash
+# Continúa normalmente
+/sonnet
+# Trabajar en código
+```
+
+**En Naranja (80-89%):**
+```bash
+# Guardar contexto de sesión
+/dfo save
+
+# Puedes continuar pero con cuidado
+```
+
+**En Rojo (90-99%):**
+```bash
+# ACCIÓN URGENTE
+/dfo save
+
+# Luego reinicia
+exit
+claude
+```
+
+**Rojo Crítico (100%+):**
+```bash
+# CRÍTICO - Auto-compactación en progreso
+/dfo save
+
+# Reinicia sesión
+exit
+claude
+```
+
+### Documentación Completa
+
+Ver **[STATUSLINE_GUIDE.md](./STATUSLINE_GUIDE.md)** para:
+- 📖 Explicación detallada de cada elemento
+- 🎯 Mejores prácticas de monitoreo
+- 💾 Cuándo guardar contexto
+- 🔄 Integración con `/dfo save` y Ralph loops
+- 📊 Estadísticas típicas de uso
 
 ---
 
