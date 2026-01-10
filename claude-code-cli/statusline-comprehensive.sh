@@ -68,17 +68,35 @@ context_pct=0
 context_color="${green}"  # Default: green
 context_indicator=""       # Indicator bar
 
+# Compaction detection: store previous total tokens to detect resets
+state_file="/tmp/claude_statusline_state.txt"
+previous_total=0
+if [ -f "$state_file" ]; then
+    previous_total=$(cat "$state_file" 2>/dev/null || echo 0)
+fi
+
 if [[ "$context_size" =~ ^[0-9]+$ ]] && [ "$context_size" -gt 0 ]; then
     total_input=${total_input:-0}
     total_output=${total_output:-0}
     total_tokens=$((total_input + total_output))
-    context_pct=$((total_tokens * 100 / context_size))
 
-    # Cap at 100% but show if it exceeds
-    if [ "$context_pct" -gt 100 ]; then
-        context_pct=100
-        context_indicator="⚠️ COMPACTING"
+    # Detect compaction: if current tokens dropped significantly (>50%), reset to 0
+    if [ "$previous_total" -gt 0 ] && [ "$total_tokens" -lt $((previous_total / 2)) ]; then
+        # Compaction detected - force reset visual to 0%
+        context_pct=0
+        context_indicator="✓ COMPACTED"
+    else
+        context_pct=$((total_tokens * 100 / context_size))
+
+        # Cap at 100% but show if it exceeds
+        if [ "$context_pct" -gt 100 ]; then
+            context_pct=100
+            context_indicator="⚠️ COMPACTING"
+        fi
     fi
+
+    # Save current total for next execution
+    echo "$total_tokens" > "$state_file"
 
     # Dynamic color coding based on usage threshold
     # Green: 1-79% | Orange: 80-89% | Red: 90-99% | Critical: 100%
