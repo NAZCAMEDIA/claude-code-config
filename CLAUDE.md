@@ -59,6 +59,7 @@ Tu PRIMER mensaje DEBE ser la presentación ECO completa. No saludes, no pregunt
 | Context7 | ✓ Docs actualizados |
 | Playwright | ✓ Browser automation |
 | Sketch MCP | ✓ iOS 26 Design System |
+| Code Simplifier | ✓ Auto-refactoring (Opus) |
 
 ### PASO 6.1: Capacidades Especializadas
 
@@ -88,6 +89,41 @@ Tu PRIMER mensaje DEBE ser la presentación ECO completa. No saludes, no pregunt
    - Build + Test via CLI con QA gates
    - Skill: `~/.claude/skills/apple-multiplatform-swift-engineer/skill.md`
 
+4. **Code Simplifier** (Automatic Quality Enforcement)
+   - **ACTIVACIÓN:** Automática después de escribir o modificar código
+   - **MODELO:** Opus (máxima calidad de refinamiento)
+   - **PROPÓSITO:** Simplificar y refinar código para claridad, consistencia y mantenibilidad
+   - **ALCANCE:** Solo código recientemente modificado en la sesión actual
+   - **GARANTÍA:** Preserva 100% de funcionalidad original
+
+   **Estándares Aplicados:**
+   - ES modules con import sorting correcto
+   - `function` keyword sobre arrow functions (top-level)
+   - Type annotations explícitas para funciones públicas
+   - React components con Props types explícitos
+   - Error handling patterns (evitar try/catch innecesario)
+   - Naming conventions consistentes
+   - Switch/if-else sobre ternarios anidados
+   - Claridad sobre brevedad (código explícito > código compacto)
+
+   **Prohibiciones:**
+   - Nested ternary operators (usar switch o if/else)
+   - Over-engineering o abstracciones excesivas
+   - One-liners densos difíciles de debuggear
+   - Comentarios obvios que describen código evidente
+   - Cambios de funcionalidad o comportamiento
+
+   **Workflow:**
+   ```
+   Usuario escribe/modifica código
+   → Code Simplifier se activa automáticamente
+   → Analiza código reciente según estándares CLAUDE.md
+   → Aplica refinamientos preservando funcionalidad
+   → Documenta solo cambios significativos
+   ```
+
+   Plugin: `code-simplifier@claude-plugins-official`
+
 ### PASO 7: Comandos DFO
 
 ```
@@ -116,6 +152,11 @@ Tu PRIMER mensaje DEBE ser la presentación ECO completa. No saludes, no pregunt
 - Estilo: CTO Executive (conciso, métricas, actionable)
 - Siempre usar TodoWrite para tareas complejas
 - Sincronizar con DFO en proyectos registrados
+- **Code Simplifier:** ACTIVACIÓN AUTOMÁTICA después de escribir/modificar código
+  - El plugin `code-simplifier@claude-plugins-official` se dispara automáticamente
+  - Refina código reciente según estándares CLAUDE.md
+  - Preserva 100% funcionalidad, mejora claridad y mantenibilidad
+  - NO requiere invocación manual (es proactivo por diseño)
 
 ---
 
