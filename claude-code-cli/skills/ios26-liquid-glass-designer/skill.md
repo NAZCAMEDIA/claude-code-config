@@ -3,6 +3,7 @@
 > **Principal Product Designer (UI/UX) | Apple-grade iOS 26 Design System**
 >
 > Diseño para implementación real (SwiftUI/UIKit), no para Dribbble. Consistente, accesible, verificable y escalable.
+> **Integración Técnica:** RALPH WIGGUM PROTOCOL CERTIFIED.
 
 ---
 
@@ -11,23 +12,57 @@
 Construir sistemas de diseño iOS 26 Liquid Glass con consistencia industrial mediante:
 1. Sistema de tokens semánticos (incluye tokens de material Liquid Glass)
 2. Librería de componentes con "Golden Sample" perfecto
-3. Test mínimo (1 pantalla o 1 módulo) que pruebe funcionamiento
-4. QA con criterios PASS/FAIL
+3. Implementación programática validada (Sketch MCP + JS)
+4. QA con criterios PASS/FAIL (Ralph Wiggum Certified)
 
 ---
 
-## 📋 WORKFLOW DE ACTIVACIÓN
+## 🔬 TECHNICAL IMPLEMENTATION (SKETCH MCP / JS)
 
-### Pre-Check Questions (Máximo 5)
+### 1. Liquid Glass Recipe (The Code)
+Para lograr el efecto Liquid Glass correcto en scripts de Sketch:
 
-Si faltan entradas, preguntar:
-1. **Tipo de app y objetivo** (ej: fitness tracker, social media, productivity)
-2. **User journeys críticos** (5-10, o 1 para MVP)
-3. **Brand** (logo/colores/typo) - si no existe: proponer brand neutra iOS-compatible
-4. **Herramienta** (Sketch o Figma) - si Sketch: confirmar librería iOS 26
-5. **Plataformas** (iPhone obligatorio, iPad opcional)
+```javascript
+// A. Background (Sheet/Panel)
+const bg = new sketch.ShapePath({
+    style: {
+        fills: [{ color: '#FFFFFFCC' }], // 80% White
+        borders: [{ color: '#FFFFFF', thickness: 1, position: 'Inside' }],
+        shadows: [{ color: '#00000026', blur: 40, y: 20 }]
+    }
+});
+// CRITICAL: Apply background blur post-creation
+bg.style.blur = {
+    center: { x: 0.5, y: 0.5 },
+    isEnabled: true,
+    motionAngle: 0,
+    radius: 30,
+    type: sketch.Style.BlurType.Background 
+};
 
-**Después de 5 preguntas:** Continuar con suposiciones explícitas documentadas.
+// B. Decorative Blobs
+const blob = new sketch.ShapePath({ ... });
+blob.style.blur = {
+    // ... defaults ...
+    radius: 80,
+    type: sketch.Style.BlurType.Gaussian 
+};
+```
+
+### 2. Ralph Wiggum Protocol (Geometric QA)
+Todo script de generación DEBE retornar un JSON de validación al final.
+
+```javascript
+// REQUIRED OUTPUT FORMAT
+console.log(JSON.stringify({
+    status: "Validated",
+    checks: {
+        margins: inputLayer.frame.x === 24, // Must be relative to parent
+        width: inputLayer.frame.width === 297, // 345 - 48
+        alignment: "Perfect"
+    }
+}));
+```
 
 ---
 
@@ -689,90 +724,12 @@ El resultado debe:
 2. Ser **sobrio y preciso** (no decorativo)
 3. Ser **implementable** (80%+ componentes estándar SwiftUI/UIKit)
 4. Tener **consistencia de sistema** (todos los valores son tokens)
+5. **Ser verificable por código (Ralph Wiggum JS check).**
 
 **Si el Golden Sample no es impecable, el skill se considera NO LISTO.**
 
 ---
 
-## 🔧 HERRAMIENTAS Y REFERENCIAS
-
-### Sketch (si aplica)
-- Librería iOS 26 oficial de Apple
-- SF Symbols plugin
-- Material effects natives
-
-### Figma (si aplica)
-- iOS 26 UI Kit community
-- Variables para tokens
-- Auto-layout para componentes
-
-### Validación
-- Contrast Checker (mínimo 4.5:1 para texto)
-- SF Symbols app (para iconos)
-- iOS Simulator (para validar en device real)
-
----
-
-## 📚 KNOWLEDGE BASE
-
-### Material Usage Examples
-
-**✅ CORRECTO:**
-```
-Top Navigation Bar → glass/bar
-Razón: Es navegación persistente, el blur muestra scroll debajo, mantiene jerarquía
-```
-
-```
-Action Button secundario → glass/control
-Razón: El material diferencia de primary button (solid), mantiene coherencia con sistema
-```
-
-```
-Sheet Modal → glass/sheet
-Razón: Contexto modal, el blur muestra contenido debajo, separación clara del base layer
-```
-
-**❌ INCORRECTO:**
-```
-Section Background → glass/control
-Razón: No es control, no aporta función, compite con contenido
-Corrección: Usar surface/base o surface/secondary
-```
-
-```
-Card de Contenido → glass/overlay
-Razón: Contenido principal necesita estabilidad, no blur
-Corrección: Usar surface/elevated con opacidad completa
-```
-
----
-
-## 🎓 ACTIVACIÓN DEL SKILL
-
-**Para usar este skill:**
-
-```bash
-# Desde Claude Code CLI:
-/ios26-liquid-glass-designer
-
-# O invocación directa:
-"Necesito diseñar un sistema iOS 26 Liquid Glass para [tipo de app]"
-```
-
-**El skill:**
-1. Hará máximo 5 preguntas de contexto
-2. Generará sistema de tokens completo
-3. Construirá Golden Sample perfecto
-4. Creará librería de componentes base
-5. Validará con MVP
-6. Ejecutará QA PASS/FAIL
-7. Entregará documentación completa
-
-**Criterio de éxito:** Golden Sample PASS en primera iteración QA.
-
----
-
-**Versión:** 1.0
-**Última actualización:** 2026-01-04
+**Versión:** 2.0 (Ralph Wiggum Certified)
+**Última actualización:** 2026-01-11
 **Mantenedor:** ECO-Lambda (Λ)
