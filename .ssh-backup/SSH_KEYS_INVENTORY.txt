@@ -1,0 +1,26 @@
+╔════════════════════════════════════════════════╗
+║  SSH KEYS BACKUP INVENTORY                     ║
+║  Encrypted: OpenSSL AES-256-CBC                ║
+╚════════════════════════════════════════════════╝
+
+🔑 CLAVES CRÍTICAS:
+├─ nemesis_cmdr_key          MAESTRA (red NEMESIS)
+├─ id_ed25519                Personal (GitHub, servidores)
+└─ id_nemesis_server         Servidor remoto externo
+
+🔗 CLAVES ESPECÍFICAS:
+├─ cepcomunicacion           CepComunicación deploy
+├─ adepac_deploy_auto        ADEPAC automatizado
+├─ prilabsa-github-actions   GitHub Actions
+└─ solaria-hetzner/*         Servidor SOLARIA (46.62.222.138)
+
+🖥️  SSH HOSTS CONFIGURADOS:
+├─ Tailscale: mac-mini-drake, drake-command01, acer-drake...
+├─ Remoto: solaria-hetzner-prod, nemesis-server, contabo
+└─ Ver ~/.ssh/config para detalles
+
+✅ POST-RESTAURACIÓN:
+[ ] chmod 600 ~/.ssh/*_key
+[ ] chmod 700 ~/.ssh
+[ ] ssh mac-mini-drake "whoami"
+[ ] ssh -T git@github.com

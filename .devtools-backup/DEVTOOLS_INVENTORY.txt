@@ -1,0 +1,22 @@
+╔═════════════════════════════════════════════════╗
+║  DEV TOOLS CONFIG INVENTORY                     ║
+║  Encrypted: OpenSSL AES-256-CBC                 ║
+╚═════════════════════════════════════════════════╝
+
+🔧 WARP TERMINAL
+├─ ~/.warp/keybindings.yaml
+├─ ~/.warp/themes/corsairhud.yaml
+└─ ~/.warp/themes/corsairhudplus.yaml (CORSAIR+)
+
+💻 ANTIGRAVITY IDE
+├─ ~/.antigravity/argv.json
+└─ ~/.antigravity/antigravity/
+
+⚠️ NO INCLUIDO (restaurar manualmente si es necesario):
+├─ ~/Library/Application Support/Antigravity/User/settings.json
+└─ Extensiones activas
+
+✅ POST-RESTAURACIÓN:
+[ ] Extraer backup
+[ ] Abrir Warp → tema CORSAIR+
+[ ] Abrir AntiGravity → argv.json cargado
