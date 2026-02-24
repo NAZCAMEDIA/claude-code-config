@@ -90,7 +90,7 @@
       "type": "http",
       "url": "https://dfo.solaria.agency/mcp",
       "headers": {
-        "Authorization": "Bearer default",
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiY2FybG9zanBlcmV6Iiwicm9sZSI6ImNlbyIsImlhdCI6MTc2NzUzNzc0MiwiZXhwIjoxNzY3NjI0MTQyfQ.hWA-26Etvt9uq7q9Sw78NK18SGK9vpW5YkrGqehWceE",
         "X-Project-Id": "akademate"
       }
     },

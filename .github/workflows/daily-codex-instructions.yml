@@ -1,0 +1,35 @@
+name: Daily Codex Instructions Sync
+
+on:
+  schedule:
+    # Run at 01:30 UTC (aligns with daily cadence, separate from existing Claude sync)
+    - cron: '30 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync-instructions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "ECO-NEMESIS-SYNC"
+          git config --global user.email "charlie@solaria.agency"
+
+      - name: Regenerate AGENTS instructions
+        run: bash scripts/sync-claude-to-codex.sh
+
+      - name: Commit auto-generated instructions (if changed)
+        run: |
+          if git diff --quiet; then
+            echo "✅ AGENTS already up to date"
+            exit 0
+          fi
+          git add AGENTS.md
+          git commit -m "🤖 Daily Codex instructions sync"
+          git push origin main
